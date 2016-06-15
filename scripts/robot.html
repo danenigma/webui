@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+	   <meta charset  = "utf-8">
+	   <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+	   <meta name = "viewport" content  = "width = divice-width , initial-scale = 1">
+	   <title>ENIGMA ROBOT</title>
+
+	   <script src= "js/jquery-2.1.4.js" ></script>  
+	   <script>
+
+		function outputUpdate(vol) {
+			document.querySelector('#neck_servo_one').value = vol;
+			  var values = vol;
+		          jQuery.ajax({
+					  url:"/home/".concat(values).concat("/"),
+			    		  cache: false,
+			    data: {
+				'values': values
+			    },
+			    type: 'POST'
+			});
+		}
+	    </script>
+
+	
+	</head>
+	<body>
+	
+				<h1>enigma</h1>
+			
+				<label for="fader">neck_servo_one</label>
+				<input type="range" min="0" max="100" value="50" id="fader" 
+					step="1" oninput="outputUpdate(value)">
+				<output for="fader" id="neck_servo_one">50</output>	
+	</body>
+
+</html>

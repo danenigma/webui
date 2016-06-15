@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+	   <meta charset  = "utf-8">
+	   <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
+	   <meta name = "viewport" content  = "width = divice-width , initial-scale = 1">
+	   <title>ENIGMA ROBOT</title>
+	   <script type="text/javascript" src="{{ url_for('static', filename='jquery-2.1.4.js') }}"></script>
+	   <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+	   <link rel = "stylesheet" href = "{{ url_for('static', filename='bootstrap.min.css') }}">
+	   <script>
+
+		function outputUpdate_neck_one(vol) {
+			document.querySelector('#neck_servo_one').value = vol;
+			  var values = vol;
+		          jQuery.ajax({
+					  url:"/neck_servo_one/",
+			    		  cache: false,
+			    data: {
+				'values': values
+			    },
+			    type: 'POST'
+			});
+		}
+		function outputUpdate_neck_two(vol) {
+			document.querySelector('#neck_servo_two').value = vol;
+			  var values = vol;
+		          jQuery.ajax({
+					  url:"/neck_servo_two/",
+			    		  cache: false,
+			    data: {
+				'values': values
+			    },
+			    type: 'POST'
+			});
+		}	
+		function outputUpdate_eyes_pan(vol) {
+			document.querySelector('#eyes_pan').value = vol;
+			  var values = vol;
+		          jQuery.ajax({
+					  url:"/eyes_pan/",
+			    		  cache: false,
+			    data: {
+				'values': values
+			    },
+			    type: 'POST'
+			});
+		}	
+		function outputUpdate_eyes_tilt(vol) {
+			document.querySelector('#eyes_tilt').value = vol;
+			  var values = vol;
+		          jQuery.ajax({
+					  url:"/eyes_tilt/",
+			    		  cache: false,
+			    data: {
+				'values': values
+			    },
+			    type: 'POST'
+			});
+		}
+	    </script>
+
+	
+	</head>
+	<body>
+				
+		<div class = "row"> 
+			<div class= "col-md-4"></div>
+			<div class= "col-md-4">
+				<h1>enigma</h1>
+			</div>
+		</div>
+					
+		<div class = "row"> 
+			<div class= "col-md-4"></div>	
+			<div class= "col-md-4">
+				<label for="fader">neck_servo_one</label>
+				<input type="range" min="0" max="100" value="50" id="fader" 
+					step="1" oninput="outputUpdate_neck_one(value)">
+				<output for="fader" id="neck_servo_one">50</output><br>	
+			 </div>
+		</div>
+		<div class = "row"> 
+			<div class= "col-md-4"></div>	
+			<div class= "col-md-4">
+				<label for="fader">neck_servo_two</label>
+				<input type="range" min="0" max="100" value="50" id="fader" 
+					step="1" oninput="outputUpdate_neck_two(value)">
+				<output for="fader" id="neck_servo_two">50</output>	
+				<br>
+			</div>
+		</div>
+		<div class = "row"> 
+			<div class= "col-md-4"></div>	
+			<div class= "col-md-4">
+				<label for="fader">eyes_pan</label>
+				<input type="range" min="0" max="100" value="50" id="fader" 
+					step="1" oninput="outputUpdate_eyes_pan(value)">
+				<output for="fader" id="eyes_pan">50</output><br>	
+				<label for="fader">eyes_tilt</label>
+				<input type="range" min="0" max="100" value="50" id="fader" 
+					step="1" oninput="outputUpdate_eyes_tilt(value)">
+				<output for="fader" id="eyes_tilt">50</output>	
+			</div>
+		</div>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
+
+from flask import Flask,render_template,request
+import rospy
+from std_msgs.msg import Int32
+app = Flask(__name__)
+@app.route('/')
+def index():
+   	return render_template('robot.html')
+@app.route('/neck_servo_one/', methods=['POST'])
+def neck_servo_one():
+	global neck_one_pub
+	neck_one_pub.publish(int(request.form['values']))
+	return render_template('robot.html')
+@app.route('/neck_servo_two/', methods=['POST'])
+def neck_servo_two():
+	global neck_one_pub
+	neck_two_pub.publish(int(request.form['values']))
+	return render_template('robot.html')
+@app.route('/eyes_pan/', methods=['POST'])
+def eyes_pan():
+	global neck_one_pub
+	pan_pub.publish(int(request.form['values']))
+	return render_template('robot.html')
+@app.route('/eyes_tilt/', methods=['POST'])
+def eyes_tilt():
+	global neck_one_pub
+	tilt_pub.publish(int(request.form['values']))
+	return render_template('robot.html')
+
+rospy.init_node("webui")
+neck_one_pub  = rospy.Publisher('/neck_one_servo_angle',Int32,queue_size = 1) 
+neck_two_pub  = rospy.Publisher('/neck_two_servo_angle',Int32,queue_size = 1) 
+pan_pub = rospy.Publisher('/eyes_pan_angle',Int32,queue_size = 1) 
+tilt_pub  = rospy.Publisher('/eyes_tilt_angle',Int32,queue_size = 1) 
+if __name__ == "__main__":
+	app.run(debug = True)
