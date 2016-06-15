@@ -7,7 +7,8 @@
 	   <title>ENIGMA ROBOT</title>
 	   <script type="text/javascript" src="{{ url_for('static', filename='jquery-2.1.4.js') }}"></script>
 	   <script type="text/javascript" src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-	   <link rel = "stylesheet" href = "{{ url_for('static', filename='bootstrap.min.css') }}">
+	   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='bootstrap.min.css') }}">
+	   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
 	   <script>
 
 		function outputUpdate_neck_one(vol) {
@@ -63,10 +64,16 @@
 	
 	</head>
 	<body>
-				
+		<div class = "row">
+			<div class = "col-md-5"></div>
+			<div class = "col-md-4 text-center">
+				<img class  = "img-responsive" src= {{ url_for('static', filename = 'enigma.png') }} alt="previous" title="Previous" border="0">
+			</div>		
+		<div class = "col-md-3"></div>
+		</div>	
 		<div class = "row"> 
-			<div class= "col-md-4"></div>
-			<div class= "col-md-4">
+			<div class= "col-md-4 " ></div>
+			<div class= "col-md-4 text-center">
 				<h1>enigma</h1>
 			</div>
 		</div>
