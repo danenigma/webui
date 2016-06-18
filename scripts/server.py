@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
-
-
+	
 from flask import Flask,render_template,request
 import rospy
 from std_msgs.msg import Int32
 app = Flask(__name__)
+@app.route('/template/')
+def template():
+   	return render_template('robot.html')
 @app.route('/')
 def index():
    	return render_template('robot.html')
